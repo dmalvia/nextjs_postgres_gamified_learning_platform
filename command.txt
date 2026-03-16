@@ -1,0 +1,11 @@
+npx create-next-app@latest buildspace
+remove eslint
+
+Drizzle Setup
+https://orm.drizzle.team/docs/get-started/postgresql-new
+
+dependencies
+npm install @clerk/nextjs @tanstack/react-query recharts class-variance-authority clsx tailwind-merge lucide-react
+
+npx shadcn@latest init 
+npx shadcn@latest add button card tabs avatar progress badge table input select
