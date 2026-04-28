@@ -1,3 +1,58 @@
+1. Project Structure & Core Concepts
+Authentication: Uses Clerk for user management.
+Database: Drizzle ORM with schema for users, courses, lessons, enrollments, progress, achievements.
+UI: Next.js App Router, shadcn/ui for components, Tailwind CSS (already set up).
+Data Fetching: React Query.
+2. API Routes (with Purpose)
+API Route	Purpose
+/api/achievements	Get all achievements and user’s earned status
+/api/courses	List all courses with user’s enrollment status
+/api/courses/[courseId]	Get course details and lessons for a course
+/api/courses/[courseId]/enroll	Enroll the user in a course
+/api/leaderboard	Get top users by points, user’s rank, streak, etc.
+/api/progress	Track lesson completion, check and award achievements
+/api/streak	Get and update user’s current and longest streak
+/api/user/stats	Get user stats: level, XP, streak, completed courses, lessons, etc.
+/api/user/sync	Sync Clerk user data with DB (create/update user profile on login)
+3. Recommended API Build Sequence
+/api/user/sync (sync user on login)
+/api/courses (list courses)
+/api/courses/[courseId] (course details)
+/api/courses/[courseId]/enroll (enroll in course)
+/api/progress (track lesson completion)
+/api/achievements (get achievements)
+/api/leaderboard (leaderboard data)
+/api/streak (streak calculation)
+/api/user/stats (user stats for dashboard/profile)
+4. Recommended Page Build Sequence
+Sign In/Sign Up (Clerk)
+Dashboard (overview, uses /api/user/stats, /api/courses)
+Courses List (uses /api/courses)
+Course Details (uses /api/courses/[courseId], enroll button)
+Lesson Page (mark as complete, uses /api/progress)
+Achievements Page (uses /api/achievements)
+Leaderboard Page (uses /api/leaderboard)
+Profile/Stats Page (uses /api/user/stats)
+Streak Display (uses /api/streak)
+5. Teaching Flow for Your Tutorial
+Start with a high-level overview: Show the final app, explain the main features and data flow.
+Introduce each section with “why”: Before building an API or page, explain its purpose and how it fits into the user journey.
+Build incrementally: After each API, show how it powers a page or feature.
+Demo frequently: After each section, show the feature working in the browser.
+Use diagrams: For data flow (e.g., how progress updates streaks and achievements).
+Summarize: At the end of each section, recap what was built and why.
+6. Drizzle Setup Commands (in order)
+Install Drizzle and driver:
+Initialize Drizzle config:
+Create schema files in schema
+Run migrations:
+7. shadcn/ui
+Already set up with npx shadcn-ui@latest init
+Use shadcn components for UI (buttons, cards, tables, etc.)
+8. Tailwind CSS
+Already included with Next.js (no extra setup needed).
+
+
 npx create-next-app@latest buildspace
 remove eslint
 
@@ -7,5 +62,32 @@ https://orm.drizzle.team/docs/get-started/postgresql-new
 dependencies
 npm install @clerk/nextjs @tanstack/react-query recharts class-variance-authority clsx tailwind-merge lucide-react
 
-npx shadcn@latest init 
+npx shadcn@latest init select base and then Vega
 npx shadcn@latest add button card tabs avatar progress badge table input select
+
+
+User journey
+1. New User Onboarding & Profile Sync
+User visits the app and signs up/signs in via Clerk.
+/api/user/sync is called to create or update the user profile in the database.
+User is redirected to the dashboard.
+2. Browsing & Enrolling in Courses
+User lands on the dashboard and sees available courses (/api/courses).
+User clicks a course to view details and lessons (/api/courses/[courseId]).
+User clicks “Enroll” to join the course (/api/courses/[courseId]/enroll).
+3. Learning & Progress Tracking
+User views a lesson page, watches content, and marks it as complete.
+Completion triggers /api/progress to update progress and check for achievements.
+User’s streak and XP are updated (/api/streak, /api/user/stats).
+4. Achievements & Gamification
+As the user completes lessons/courses, achievements are awarded (/api/achievements).
+User can view earned and available achievements on the Achievements page.
+5. Leaderboard & Social Motivation
+User visits the Leaderboard page to see their rank and compare with others (/api/leaderboard).
+User’s current streak, points, and level are displayed.
+6. Profile & Stats
+User visits their profile or dashboard to see stats: level, XP, streak, completed courses, lessons, etc. (/api/user/stats).
+7. Daily Return & Streaks
+User returns daily, completes lessons, and maintains/increases their streak (/api/streak).
+Streak and longest streak are updated and shown on the dashboard.
+These journeys help you explain the “why” behind each feature and API, making your tutorial more relatable and easier to follow for your audience. Let me know if you want a visual flowchart or more detail on any journey!

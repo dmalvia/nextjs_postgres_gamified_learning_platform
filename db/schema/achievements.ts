@@ -1,3 +1,5 @@
+// Schema definition for achievements and user_achievements tables, and their relations.
+// Each export is documented below.
 import {
   pgTable,
   text,
@@ -6,11 +8,14 @@ import {
   json,
   uniqueIndex,
 } from "drizzle-orm/pg-core";
-import { relations } from "drizzle-orm";
+import { relations, sql } from "drizzle-orm";
 import { users } from "./users";
 
+// Defines the "achievements" table, storing achievement details like name, description, icon, points, and criteria.
 export const achievements = pgTable("achievements", {
-  id: text("id").primaryKey().default("gen_random_uuid()"),
+  id: text("id")
+    .primaryKey()
+    .default(sql`gen_random_uuid()`),
   name: text("name").notNull().unique(),
   description: text("description").notNull(),
   icon: text("icon").notNull(),
@@ -18,10 +23,13 @@ export const achievements = pgTable("achievements", {
   criteria: json("criteria").notNull(),
 });
 
+// Defines the "user_achievements" table, linking users to achievements they've earned, with timestamps and uniqueness constraint.
 export const userAchievements = pgTable(
   "user_achievements",
   {
-    id: text("id").primaryKey().default("gen_random_uuid()"),
+    id: text("id")
+      .primaryKey()
+      .default(sql`gen_random_uuid()`),
     userId: text("user_id")
       .notNull()
       .references(() => users.id, { onDelete: "cascade" }),
@@ -40,10 +48,12 @@ export const userAchievements = pgTable(
   },
 );
 
+// Sets up the relation: one achievement can be earned by many users (userAchievements).
 export const achievementsRelations = relations(achievements, ({ many }) => ({
   users: many(userAchievements),
 }));
 
+// Sets up the relation: a user_achievement links to one user and one achievement.
 export const userAchievementsRelations = relations(
   userAchievements,
   ({ one }) => ({

@@ -1,0 +1,41 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1773780295773,
+      "tag": "0000_new_kate_bishop",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1773781014756,
+      "tag": "0001_lethal_terrax",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1775248499328,
+      "tag": "0002_parallel_living_lightning",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1775419486713,
+      "tag": "0003_organic_inertia",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1775508164130,
+      "tag": "0004_aberrant_black_tarantula",
+      "breakpoints": true
+    }
+  ]
+}

@@ -5,14 +5,17 @@ import {
   boolean,
   uniqueIndex,
 } from "drizzle-orm/pg-core";
-import { relations } from "drizzle-orm";
+import { relations, sql } from "drizzle-orm";
 import { users } from "./users";
 import { courses } from "./courses";
 
+// Defines the "enrollments" table, linking users to courses they are enrolled in, with completion status and timestamps.
 export const enrollments = pgTable(
   "enrollments",
   {
-    id: text("id").primaryKey().default("gen_random_uuid()"),
+    id: text("id")
+      .primaryKey()
+      .default(sql`gen_random_uuid()`),
     userId: text("user_id")
       .notNull()
       .references(() => users.id, { onDelete: "cascade" }),
@@ -33,6 +36,7 @@ export const enrollments = pgTable(
   },
 );
 
+// Sets up the relations: an enrollment links to one user and one course.
 export const enrollmentsRelations = relations(enrollments, ({ one }) => ({
   user: one(users, {
     fields: [enrollments.userId],

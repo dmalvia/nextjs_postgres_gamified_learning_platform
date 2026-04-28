@@ -5,14 +5,17 @@ import {
   boolean,
   uniqueIndex,
 } from "drizzle-orm/pg-core";
-import { relations } from "drizzle-orm";
+import { relations, sql } from "drizzle-orm";
 import { users } from "./users";
 import { lessons } from "./lessons";
 
+// Defines the "progress" table, tracking user completion status for each lesson, with timestamps.
 export const progress = pgTable(
   "progress",
   {
-    id: text("id").primaryKey().default("gen_random_uuid()"),
+    id: text("id")
+      .primaryKey()
+      .default(sql`gen_random_uuid()`),
     userId: text("user_id")
       .notNull()
       .references(() => users.id, { onDelete: "cascade" }),
@@ -32,6 +35,7 @@ export const progress = pgTable(
   },
 );
 
+// Sets up the relations: a progress record links to one user and one lesson.
 export const progressRelations = relations(progress, ({ one }) => ({
   user: one(users, {
     fields: [progress.userId],

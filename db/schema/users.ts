@@ -5,16 +5,18 @@ import {
   timestamp,
   uniqueIndex,
 } from "drizzle-orm/pg-core";
-import { relations } from "drizzle-orm";
+import { relations, sql } from "drizzle-orm";
 import { enrollments } from "./enrollments";
 import { progress } from "./progress";
 import { userAchievements } from "./achievements";
-import { organizationMembers } from "./organizations";
 
+// Defines the "users" table, storing user profile, authentication, and gamification data.
 export const users = pgTable(
   "users",
   {
-    id: text("id").primaryKey().default("gen_random_uuid()"),
+    id: text("id")
+      .primaryKey()
+      .default(sql`gen_random_uuid()`),
     clerkId: text("clerk_id").notNull().unique(),
     email: text("email").notNull().unique(),
     name: text("name"),
@@ -39,9 +41,9 @@ export const users = pgTable(
   },
 );
 
+// Sets up the relations: a user can have many enrollments, achievements, and progress records.
 export const usersRelations = relations(users, ({ many }) => ({
   enrollments: many(enrollments),
   achievements: many(userAchievements),
   progress: many(progress),
-  organizationMembers: many(organizationMembers),
 }));
