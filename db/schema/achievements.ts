@@ -11,7 +11,8 @@ import {
 import { relations, sql } from "drizzle-orm";
 import { users } from "./users";
 
-// Defines the "achievements" table, storing achievement details like name, description, icon, points, and criteria.
+// Defines the "achievements" table, storing achievement details
+// like name, description, icon, points, and criteria.
 export const achievements = pgTable("achievements", {
   id: text("id")
     .primaryKey()
@@ -23,7 +24,8 @@ export const achievements = pgTable("achievements", {
   criteria: json("criteria").notNull(),
 });
 
-// Defines the "user_achievements" table, linking users to achievements they've earned, with timestamps and uniqueness constraint.
+// Defines the "user_achievements" table, linking users to achievements
+// they've earned, with timestamps and uniqueness constraint.
 export const userAchievements = pgTable(
   "user_achievements",
   {

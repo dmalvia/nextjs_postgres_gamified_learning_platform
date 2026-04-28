@@ -9,7 +9,8 @@ import { relations, sql } from "drizzle-orm";
 import { users } from "./users";
 import { courses } from "./courses";
 
-// Defines the "enrollments" table, linking users to courses they are enrolled in, with completion status and timestamps.
+// Defines the "enrollments" table, linking users to courses
+// they are enrolled in, with completion status and timestamps.
 export const enrollments = pgTable(
   "enrollments",
   {

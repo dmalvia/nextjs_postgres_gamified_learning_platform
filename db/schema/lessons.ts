@@ -3,7 +3,8 @@ import { relations, sql } from "drizzle-orm";
 import { courses } from "./courses";
 import { progress } from "./progress";
 
-// Defines the "lessons" table, storing lesson details like title, content, video URL, order, and course association.
+// Defines the "lessons" table, storing lesson details
+// like title, content, video URL, order, and course association.
 export const lessons = pgTable("lessons", {
   id: text("id")
     .primaryKey()
@@ -18,7 +19,8 @@ export const lessons = pgTable("lessons", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
-// Sets up the relations: a lesson belongs to one course and can have many progress records.
+// Sets up the relations: a lesson belongs
+// to one course and can have many progress records.
 export const lessonsRelations = relations(lessons, ({ one, many }) => ({
   course: one(courses, {
     fields: [lessons.courseId],

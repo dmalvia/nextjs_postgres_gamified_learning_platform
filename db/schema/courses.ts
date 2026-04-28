@@ -3,7 +3,8 @@ import { relations, sql } from "drizzle-orm";
 import { lessons } from "./lessons";
 import { enrollments } from "./enrollments";
 
-// Defines the "courses" table, storing course details like title, description, thumbnail, duration, points, and timestamps.
+// Defines the "courses" table, storing course details like title,
+// description, thumbnail, duration, points, and timestamps.
 export const courses = pgTable("courses", {
   id: text("id")
     .primaryKey()

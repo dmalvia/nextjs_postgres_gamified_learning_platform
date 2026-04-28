@@ -65,24 +65,31 @@ A modern, gamified learning platform that transforms coding education into an en
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/dmalvia/buildspace.git
+git clone https://github.com/dmalvia/nextjs_postgres_gamified_learning_platform
 cd buildspace
 ```
 
 ### 2. Install Dependencies
 
+```bash
 npm install
+```
 
-# or
+- or
 
+```bash
 yarn install
+```
 
-# or
+- or
 
+```bash
 pnpm install
+```
 
 ### 3. Set Up Environment Variables
 
+```bash
 # Clerk Authentication
 
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
@@ -97,85 +104,79 @@ DATABASE_URL=your_postgresql_connection_string
 
 YOUTUBE_API_KEY=your_youtube_api_key
 YOUTUBE_CHANNEL_ID=your_channel_id
+```
 
 ### 5. Run Development Server
 
+```bash
 npm run dev
+```
 
-# or
+- or
 
+```bash
 yarn dev
+```
 
-# or
+- or
 
+```bash
 pnpm dev
+```
 
-📦 Database Schema
+## 📦 Database Schema
+
 Core Tables
-users - User profiles and gamification stats
 
-courses - Course information and metadata
+- users - User profiles and gamification stats
+- courses - Course information and metadata
+- lessons - Individual lessons with YouTube URLs
+- enrollments - User course enrollment tracking
+- progress - Lesson completion tracking
+- achievements - Badge definitions
+- user_achievements - Earned achievements per user
 
-lessons - Individual lessons with YouTube URLs
+## 🎯 API Endpoints
 
-enrollments - User course enrollment tracking
-
-progress - Lesson completion tracking
-
-achievements - Badge definitions
-
-user_achievements - Earned achievements per user
-
-🎯 API Endpoints
 Endpoint Method Description
-/api/user/sync POST Sync Clerk user to database
-/api/user/unified-stats GET Fetch all user stats
-/api/courses GET List all courses
-/api/courses/[id] GET Get course details
-/api/courses/[id]/enroll POST/DELETE Enroll/unenroll from course
-/api/progress POST Update lesson progress
-/api/leaderboard GET Fetch leaderboard data
-/api/achievements GET Fetch user achievements
-🎮 Gamification System
+
+- /api/user/sync POST Sync Clerk user to database
+- /api/user/unified-stats GET Fetch all user stats
+- /api/courses GET List all courses
+- /api/courses/[id] GET Get course details
+- /api/courses/[id]/enroll POST/DELETE Enroll/unenroll from course
+- /api/progress POST Update lesson progress
+- /api/leaderboard GET Fetch leaderboard data
+- /api/achievements GET Fetch user achievements
+
+## 🎮 Gamification System
+
 XP Points System
-Lesson Completion - 10-25 XP per lesson (based on course length)
 
-Achievement Unlock - 50-200 XP per achievement
+- Lesson Completion - 10-25 XP per lesson (based on course length)
+- Achievement Unlock - 50-200 XP per achievement
+- Streak Bonus - Bonus XP for maintaining daily streaks
+- Achievement Types
+- First Steps - Complete first lesson (+50 XP)
+- Quick Learner - Complete 5 lessons (+100 XP)
+- Course Master - Complete first course (+200 XP)
+- Streak Starter - Maintain 7-day streak (+150 XP)
 
-Streak Bonus - Bonus XP for maintaining daily streaks
+## 🚢 Deployment
 
-Achievement Types
-First Steps - Complete first lesson (+50 XP)
-
-Quick Learner - Complete 5 lessons (+100 XP)
-
-Course Master - Complete first course (+200 XP)
-
-Streak Starter - Maintain 7-day streak (+150 XP)
-
-🚢 Deployment
 Deploy on Vercel
 The easiest way to deploy your Next.js app is to use the Vercel Platform.
 
-Push your code to GitHub
+- Push your code to GitHub
+- Import your repository to Vercel
+- Add environment variables
+- Deploy!
 
-Import your repository to Vercel
+## 📁 Project Structure
 
-Add environment variables
-
-Deploy!
-
-Database Setup for Production
-For production, use a managed PostgreSQL service:
-
-Neon - Serverless Postgres
-
-Vercel Postgres
-
-Supabase
-
-📁 Project Structure
 text
+
+```bash
 buildspace/
 ├── app/
 │ ├── (auth)/ # Authentication pages
@@ -194,61 +195,55 @@ buildspace/
 │ └── landing/ # Landing page content
 ├── public/ # Static assets
 └── scripts/ # Utility scripts
-🔧 Available Scripts
-bash
+```
 
 # Development
 
+```bash
 npm run dev # Start development server
+```
 
 # Database
 
+```bash
 npm run db:generate # Generate Drizzle migrations
 npm run db:push # Push schema to database
 npm run db:seed # Seed database with initial data
 npm run db:studio # Open Drizzle Studio
+```
 
 # YouTube Integration
 
+```bash
 npm run fetch:youtube # Fetch courses from YouTube playlists
+```
 
 # Build
 
+```bash
 npm run build # Build for production
 npm run start # Start production server
+```
+
 🤝 Contributing
 Contributions are welcome! Please feel free to submit a Pull Request.
-
-Fork the repository
-
-Create your feature branch (git checkout -b feature/AmazingFeature)
-
-Commit your changes (git commit -m 'Add some AmazingFeature')
-
-Push to the branch (git push origin feature/AmazingFeature)
-
-Open a Pull Request
 
 📄 License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-🙏 Acknowledgments
-Next.js - React framework
+# 🙏 Acknowledgments
 
-Clerk - Authentication
-
-Drizzle ORM - Database ORM
-
-Shadcn UI - UI Components
-
-Framer Motion - Animations
-
-YouTube Data API - Video integration
+- Next.js - React framework
+- Clerk - Authentication
+- Drizzle ORM - Database ORM
+- Shadcn UI - UI Components
+- Framer Motion - Animations
+- YouTube Data API - Video integration
 
 📧 Contact
 Dipesh Malvia
 
-Project Link: https://github.com/yourusername/buildspace
+Project Link: https://github.com/dmalvia/nextjs_postgres_gamified_learning_platform
 
 ⭐ Show your support
 Give a ⭐️ if this project helped you!

@@ -41,7 +41,8 @@ export const users = pgTable(
   },
 );
 
-// Sets up the relations: a user can have many enrollments, achievements, and progress records.
+// Sets up the relations: a user can have many
+// enrollments, achievements, and progress records.
 export const usersRelations = relations(users, ({ many }) => ({
   enrollments: many(enrollments),
   achievements: many(userAchievements),

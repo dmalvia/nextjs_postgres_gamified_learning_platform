@@ -1,4 +1,5 @@
-// Re-exports all schema modules for easy import elsewhere in the project.
+// Re-exports all schema modules for easy
+// import elsewhere in the project.
 export * from "./users";
 export * from "./courses";
 export * from "./lessons";

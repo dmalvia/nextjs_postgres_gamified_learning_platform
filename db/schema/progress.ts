@@ -9,7 +9,8 @@ import { relations, sql } from "drizzle-orm";
 import { users } from "./users";
 import { lessons } from "./lessons";
 
-// Defines the "progress" table, tracking user completion status for each lesson, with timestamps.
+// Defines the "progress" table, tracking user completion
+// status for each lesson, with timestamps.
 export const progress = pgTable(
   "progress",
   {
